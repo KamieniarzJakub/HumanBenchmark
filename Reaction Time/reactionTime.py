@@ -1,12 +1,10 @@
 import pyautogui
-import cv2
 import numpy as np
 import time
 import webbrowser
 
 URL = "https://humanbenchmark.com/tests/reactiontime"
-# GREEN = [75, 219, 106]
-# BLUE = [230 232 244]
+
 RED = np.array([206, 38, 54])
 
 screenWidth, screenHeight = pyautogui.size()
@@ -23,7 +21,7 @@ def detect_green():
         while True:
             screenshot = np.array(pyautogui.screenshot())
             if not np.array_equal(screenshot[screenHeight//2][screenWidth//2], RED):
-                print(screenshot[screenHeight//2][screenWidth//2])
+                #print(screenshot[screenHeight//2][screenWidth//2])
                 break
         pyautogui.click(screenWidth/2, screenHeight/2)
         time.sleep(0.1)

@@ -8,7 +8,6 @@ URL = "https://humanbenchmark.com/tests/memory"
 
 DARK_BLUE = np.array([37, 115, 193])
 WHITE = np.array([255, 255, 255])
-MARGIN = 5
 
 def open_human_benchmark():
     webbrowser.open(URL, 1, True)
@@ -53,7 +52,7 @@ def play_level(level, game_lower_border, game_length, game_size, right_margin):
                 #cv2.imwrite(f"{level} {clicked}.png", screenshot)
 
 def determine_tile_size(game_size):
-    empty_level = np.array(pyautogui.screenshot("emtpy_level.png", region=game_size))
+    empty_level = np.array(pyautogui.screenshot("empty_level.png", region=game_size))
     i=0
     while not np.array_equal(empty_level[i][i], DARK_BLUE):
         i+=1

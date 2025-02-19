@@ -5,9 +5,7 @@ import webbrowser
 
 URL = "https://humanbenchmark.com/tests/reactiontime"
 
-RED = np.array([206, 38, 54])
-
-screenWidth, screenHeight = pyautogui.size()
+RED = (206, 38, 54)
 
 def open_human_benchmark():
     webbrowser.open(URL, 1, True)
@@ -15,17 +13,17 @@ def open_human_benchmark():
 
 
 def detect_green():
-    pyautogui.click(screenWidth/2, screenHeight/2)
+    screenWidth, screenHeight = pyautogui.size()
+    x = screenWidth//2
+    y = screenHeight//2
     
     for i in range(5):
-        while True:
-            screenshot = np.array(pyautogui.screenshot())
-            if not np.array_equal(screenshot[screenHeight//2][screenWidth//2], RED):
-                #print(screenshot[screenHeight//2][screenWidth//2])
-                break
-        pyautogui.click(screenWidth/2, screenHeight/2)
+        pyautogui.click(x, y)
         time.sleep(0.1)
-        pyautogui.click(screenWidth/2, screenHeight/2)
+        while True:
+            if not pyautogui.pixelMatchesColor(x, y, RED):
+                break
+        pyautogui.click(x, y)
 
 open_human_benchmark()
 detect_green()
